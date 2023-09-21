@@ -31,7 +31,7 @@ registerRoute(
   ({ request }) =>
   request.destination === 'style' ||
   request.destination === 'script' ||
-  request.destination === 'image',
+  request.destination === 'image' ||
   request.destination === 'font',
   new CacheFirst({
     cacheName: 'static-assets',
