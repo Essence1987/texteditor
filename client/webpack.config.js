@@ -18,7 +18,7 @@ module.exports = (env, argv) => {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: './src/index.html',
+        template: './index.html',
         filename: 'index.html',
       }),
       new WebpackPwaManifest({
@@ -39,8 +39,6 @@ module.exports = (env, argv) => {
       new InjectManifest({
         swSrc: './src-sw.js',
         swDest: 'service-worker.js',
-        template: './src/index.html',
-        filename: 'index.html',
       }),
     ],
     module: {
