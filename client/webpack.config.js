@@ -39,13 +39,15 @@ module.exports = (env, argv) => {
       new InjectManifest({
         swSrc: './src-sw.js',
         swDest: 'service-worker.js',
+        template: './src/index.html',
+        filename: 'index.html',
       }),
     ],
     module: {
       rules: [
         // TODO: Add CSS loaders and babel to webpack.
         {
-          test: /\.css$/,
+          test: /\.css$/i,
           exclude: /node_modules/,
           use: [
             'style-loader', 
@@ -59,6 +61,7 @@ module.exports = (env, argv) => {
             loader: 'babel-loader',
             options: {
               presets: ['@babel/preset-env'],
+              plugins: ['@babel/plugin-proposal-object-rest-spread', '@babel/transform-runtime'],
             },
           },
         },
