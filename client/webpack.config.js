@@ -22,16 +22,20 @@ module.exports = (env, argv) => {
         filename: 'index.html',
       }),
       new WebpackPwaManifest({
+        fingerprints: false,
+        inject: true,
         name: 'Text Editor',
         short_name: 'Editor',
         description: 'A simple text editor',
         background_color: '#ffffff',
         theme_color: '#000000',
-        start_url: '/',
+        start_url: './',
+        publicPath: './',
         icons: [
           {
             src: path.resolve('src/images/logo.png'),
             sizes: [96, 128, 192, 256, 384, 512],
+            destination: path.join('assets', 'icons'),
           },
         ],
       }),
@@ -46,14 +50,10 @@ module.exports = (env, argv) => {
         // TODO: Add CSS loaders and babel to webpack.
         {
           test: /\.css$/i,
-          exclude: /node_modules/,
-          use: [
-            'style-loader', 
-            'css-loader', 
-          ],
+          use: ['style-loader', 'css-loader'],
         },
         {
-          test: /\.js$/,
+          test: /\.m?js$/,
           exclude: /node_modules/,
           use: {
             loader: 'babel-loader',
